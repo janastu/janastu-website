@@ -92,7 +92,51 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+    margin: 0;
+}
+#head_white
+{
+    background-image: url("static/img/bg-white.jpeg");
+    width:100%;
+    content:"";
+    min-height:100%;
+    background-repeat: repeat-y;
+}
 
+#head_red
+{
+    background-color:red;
+    content:"";
+    margin:80px 0px 0px 0px;
+    height:30px;
+}
+
+#tail_content
+{
+    background-color: #DC6012;
+    width: 100%;
+}
+
+.content {
+        background-color: #F0C9B8;
+        width: 600px;
+        margin: 0 auto;
+        padding: 15px;
+        border: 1px solid #000;
+        box-shadow: 3px 5px 7px #999;
+}
+
+#image
+{
+    position:relative;
+    margin:-100px 0px 0px 350px; 
+    z-index:1;
+}
+
+
+
+/*
 .page {
   border: 1px solid #999;
   padding: 20px;
@@ -138,6 +182,36 @@ textarea {
   padding: 3px;
   margin-bottom: 10px;
 }
+
+body
+{
+	background-color:#DC6012;
+	background-image: url(static/img/bg-white.jpeg);
+}
+.bcolor
+{
+background-color: #F0C9B8;
+color: black;
+display:block;
+height: 150px;
+margin: 0 auto;
+width: 250px;
+}
+
+.bgc
+{
+background-color: #F0C9B8;
+height: 100%;
+}
+
+.content
+
+{
+margin:0px 0px 0px 350px;
+/*display: block; margin-left: auto; margin-right: auto;*/
+}
+
+*/
 
 /* ==========================================================================
    Helper classes

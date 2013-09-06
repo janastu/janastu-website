@@ -28,11 +28,11 @@
         <div id="navigation"></div>
       </div>
       <div id="content-container">
-	<div id="logo"><img src="static/img/header.gif" alt="" /></div>
-	</div>
+        <div id="logo"><img src="{{url_for('static', filename='img/header.gif')}} " alt="" /></div>
       </div>
-      <div id="footer"> {{ footer|safe }} </div>
     </div>
+    <div id="footer"> {{ footer|safe }} </div>
+  </div>
 
     <script>
       //Code to initialize the framework

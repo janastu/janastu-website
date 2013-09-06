@@ -93,21 +93,25 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-body{    
-    font-family: arial,helvetica,sans-serif;
-background-color:#DC6012;
-   background-image: url("/static/img/bg.gif");
-   background-repeat: repeat-x;
-   color: #FFFFFF;
-   font: 11px/16px arial,helvetica,sans-serif;
-   margin: 10px;
-   padding: 0;
-   position: relative;
-   text-align: center;
+body{
+  font-family: arial,helvetica,sans-serif;
+  background-color:#DC6012;
+  background-image: url("../img/bg.gif");
+  background-repeat: repeat-x;
+  color: #FFFFFF;
+  font: 11px/16px arial,helvetica,sans-serif;
+  margin: 10px;
+  padding: 0;
+  position: relative;
+  text-align: center;
+}
+
+#footer a {
+  color: #0E3C82;
 }
 #head_white
 {
-    background-image: url("static/img/bg-white.jpeg");
+    background-image: url("../img/bg-white.jpeg");
     width:100%;
     content:"";
     min-height:100%;

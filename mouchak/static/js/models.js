@@ -83,6 +83,7 @@
         }
       }
       else if(this.get('src').match(/\.css/)) {
+        console.log('css plugin found.. <'+ this.get('src')+'> loading it..');
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = this.get('src');
@@ -116,7 +117,7 @@
       customMenu: false
     },
     url: function() {
-      return '/menu/' + this.id;
+      return M.MenuURL() + '/' + this.id;
     },
     initialize: function() {
       this.id = this.get('id');

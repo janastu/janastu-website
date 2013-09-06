@@ -1,0 +1,145 @@
+body {
+	font: 11px/16px arial, helvetica, sans-serif;
+	background-color:#DC6012;
+	background-image: url(../images/bg.gif);
+	background-repeat: repeat-x;
+	color:white;
+	position:relative;
+	spacing: 0 0 0 0;
+	text-align:center;
+	margin:10px; 
+	margin-top:10px; 
+	padding:0px;
+}
+html, body, frameset { border-right: 0px }
+a img {border: none; } 
+a, a:visited {
+	font: 11px/16px arial, helvetica, sans-serif;
+	color:#0E3C82;
+	text-decoration:none;
+}
+a:hover {
+	color:#0E3C82;
+	text-decoration:none;
+}
+h2{
+	font: 14px/20px verdana;
+	color:black;
+}
+#container {
+	margin:0px auto;
+	text-align:left;
+	width: 600px;
+	background-color: #FFF;
+	color: #000;
+	border: 1px solid black;
+	height:400px auto;
+}
+#logo {	
+	position:relative;
+	top:2px;
+}
+#menuemain {
+	clear:both;
+	float:right;
+
+}
+#menulist {
+	position:relative;
+	margin:-33px 0 0 0;
+	// margin-top:-36px;
+}
+#menulist a, #menulist a:visited {
+	padding: 5px 8px 8px 5px;
+	background-color:#CE1010;
+	color:white;
+	text-decoration:none;
+}
+#menulist a:hover {
+	background-color:white;
+	color:#CE1010;
+	text-decoration:none;
+}
+ul#menulist li {
+	padding:0 0 0 0;
+	spacing:0 0 0 0;
+	display:inline;
+	list-style-type: none;
+	padding-right: 20px;
+}
+#menue {
+	clear:both;
+	float:right;
+} 
+#menue #menulist {
+	position:relative;
+	margin:-23px 0 0 0;
+}
+#menue ul#menulist li {
+	padding:0 0 0 0;
+	spacing:0 0 0 0;
+	display:inline;
+	list-style-type: none;
+
+}
+#content {
+	margin-top:20px;
+	position:relative;
+	background-color:white;
+	width:600px;
+	height:auto;
+	margin-bottom:20px;
+}
+#adress {
+	margin:0px auto;
+	width:250px;
+	height:150px;
+}
+#adress #left, #content #adress #left {
+	text-align:left;
+	float:left;
+}
+#adress #right {
+	text-align:left;
+	float:right;
+}
+#newsfeed {
+	display:none;
+	position:relative;
+	background-color:white;
+	border:1px solid black;
+	width:150px;
+	height:	300px;
+	left:530px;
+	top:-20px;
+}
+#contentitem {
+	height:550px;
+}
+#contentitem_project {
+	height:650px;
+}
+#content #adress, #contentitem, #contentitem_project, #adress {
+	display:block;
+	background-color:#F0C9B8;
+	color:black;
+}
+#newsfeed, #adress, #contentitem, #contentitem_project, h2, #footer {
+	padding: 10px 10px 10px 10px;
+	spacing: 10px 10px 10px 10px;
+}
+#line {
+	spacing:0 0 0 0;
+	padding:0 0 0 0;
+	margin:0 0 0 0;
+	display:inline;
+	height:1px;
+}
+#footer {
+	padding-top:20px;
+}
+#sublinks { border:solid 1px;  }
+#sublinks div { 
+	padding: 3px 3px 3px 3px;
+}
+

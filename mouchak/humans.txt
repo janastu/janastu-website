@@ -1,0 +1,18 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Anon Ray <rayanon004@gmail.com> (@rayanon)
+    Arvind Khadri <arvindkhadri@gmail.com> (@arvindkhadri)
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    jQuery, Modernizr
+    Underscore.js, Backbone.js
+    Bootstrap
+    
+    Python, Flask, PyMongo
+
+    MongoDB

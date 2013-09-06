@@ -1,0 +1,11 @@
+#nav-menu
+{
+float:right;
+clear:both;
+}
+
+#sub-nav
+{
+margin:-33px 0 0;
+position:relative;
+}

@@ -1,4 +1,4 @@
-DB = 'janastu'
+DB = 'mouchak_test'
 SITE_TITLE = 'Testing Mouchak'
 SITE_FOOTER = '''
 <div style="text-align: center;">

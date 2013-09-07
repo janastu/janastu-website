@@ -32,7 +32,7 @@ var NavigationView = Backbone.View.extend({
   },
   initialize: function() {
     _.bindAll(this);
-    this.template = _.template($('#nav-bar-template').html());
+    this.template = _.template($('#nav-pills-template').html());
     this.bind('navclicked', this.navClicked);
   },
   render: function() {

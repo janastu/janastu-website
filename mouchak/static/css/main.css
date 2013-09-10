@@ -94,12 +94,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 body {
-  font-family: arial,helvetica,sans-serif;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 11px;
   background-color:#DC6012;
   background-image: url("../img/bg.gif");
   background-repeat: repeat-x;
   color: #FFFFFF;
-  font: 11px/16px arial,helvetica,sans-serif;
   margin: 10px;
   padding: 0;
   position: relative;
@@ -123,8 +123,8 @@ body {
 {
   background-color:#D50E09;
   content:"";
-  margin:80px 0px 0px 0px;
-  height:25px;
+  margin: 80px 0px 0px 0px;
+  height: 25px;
 }
 
 #tail_content
@@ -144,7 +144,6 @@ body {
   background-color: #F0C9B8;
   height: 500px;
   padding: 5px;
-  font: 11px arial,helvetica,sans-serif;
 }
 
 #nav-image
@@ -168,44 +167,38 @@ body {
 .align
 
 {
-  margin:0px 0px 0px 350px;
+  margin: 0px 0px 0px 350px;
 }
 
 
 #content-container {
   margin: 0 auto;
-  margin-top: 6.1%;;
+  margin-top: 3px;
   text-align:justify;
   width: 600px;
   background-color: #FFF;
   color: #000;
-  border: 1px solid black;
-  height: 400px auto;
+  height: auto;
 }
 
 #logo {
-  position:relative;
-  top:-55px;
+  position: relative;
+  top: 3px;
 }
 
-h3{
-  color:black;
+h3 {
+  /*color: black;
   font: 14px/20px verdana;
-  padding-left: 5px;
+  padding-left: 10px;*/
+  font-size: 1.5em;
+  margin-left: 10px;
 }
-/*#image
-{
-position:relative;
-margin:-14px 0px 0px 0px;
-z-index:1;
-}*/
 
 .content-page
 {
-  background-color:#F0C9B8;
-  height:500px;
-  padding:5px 5px 5px 5px;
-  font:11px arial,helvetica,sans-serif;
+  background-color: #F0C9B8;
+  height: 500px;
+  padding: 10px;
 }
 
 .sub-edit
@@ -215,15 +208,14 @@ z-index:1;
 
 .sub-content-page
 {
-  border:1px solid #000;
-  padding:5px 5px 5px 5px;
-  font:11px arial,helvetica,sans-serif;
+  border: 1px solid #000;
+  padding: 10px;
 }
 
 /* nav menu css */
 #navigation {
   position: absolute;
-  top: 9.8%;
+  top: 10%;
   left: 45%;
   z-index: 100;
 }

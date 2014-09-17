@@ -5,12 +5,13 @@
 var types;
 M.types = types = {};
 
+/* The master view of the entire app */
 var AppView = Backbone.View.extend({
   el: 'body',
   events: {
   },
   initialize: function() {
-    _.bindAll(this);
+    _.bindAll.apply(_, [this].concat(_.functions(this)));
   },
   render: function() {
     var menu = new M.types.model.menu(M.site_content.menu);
@@ -31,25 +32,29 @@ var NavigationView = Backbone.View.extend({
     'navclicked': 'navClicked'
   },
   initialize: function() {
-    _.bindAll(this);
-    this.template = _.template($('#nav-pills-template').html());
+    _.bindAll.apply(_, [this].concat(_.functions(this)));
+    this.template = _.template($('#nav-bar-template').html());
     this.bind('navclicked', this.navClicked);
   },
   render: function() {
     // if custom menu is not defined, render a default menu
-    console.log(this.model.toJSON());
+    //console.log(this.model.toJSON());
     if(this.model.get('customMenu') === false) {
-      console.log('generating default menu..');
-      this.$el.append(this.template({}));
+      //console.log('generating default menu..');
+      var startpage = M.site_content.menu.menuOrder[0];
+      this.$el.append(this.template({
+        brand: document.title,//brand name,
+        brand_href: '#/' + startpage //link to the brand page
+      }));
       this.$ul = $('.nav');
       this.populate();
     }
     // else render the custom menu
     else {
-      console.log('rendering custom menu..');
+      //console.log('rendering custom menu..');
       this.$el.append(this.model.get('html'));
     }
-    this.$links = $('.nav li');
+    this.$links = $('.nav > li');
     if(!this.$links) {
       throw new Error('Ill-formed menu! Please check you have <ul> element' +
           'inside your menu with class nav and <li> elements inside it');
@@ -76,19 +81,33 @@ var NavigationView = Backbone.View.extend({
       }));*/
     }, this);
   },
+  //FIXIT: sometimes clicking on nav link, this function does not handle the
+  //event directly. it is passed to showPage function of router, which calls
+  //this function. so this function is without an event object is some cases.
+  //Fix it always receive the click event.
   navClicked: function(event) {
     this.$links.removeClass('active');
-    if(!event) {
-      var fragment = location.hash.split('/')[1];
-      //var pos = _.indexOf(M.pages.models, M.pages.where({'name': fragment})[0]);
-      var pos = _.indexOf(this.model.get('menuOrder'), fragment);
-      if(!fragment) {
-        pos = 0;
+    if(this.model.get('customMenu') === false) {
+      if(!event) {
+        var fragment = location.hash.split('/')[1];
+        //var pos = _.indexOf(M.pages.models, M.pages.where({'name': fragment})[0]);
+        var pos = _.indexOf(this.model.get('menuOrder'), fragment);
+        if(!fragment) {
+          pos = 0;
+        }
+        $(this.$links[pos]).addClass('active');
       }
-      $(this.$links[pos]).addClass('active');
+      else {
+        $(event.currentTarget).parent().addClass('active');
+      }
     }
-    else {
-      $(event.currentTarget).parent().addClass('active');
+    else if(this.model.get('customMenu') === true) {
+      // get the URL fragment
+      var fragment = location.hash.split('/')[1];
+      // find out where it is in the nav menu
+      var link = $('.nav').find('a[href="#/'+ fragment +'"]')[0];
+      // find its <li> parent all the way up in the main ul.nav
+      $(link).closest('ul.nav > li').addClass('active');
     }
   }
 });
@@ -97,13 +116,14 @@ var AppRouter = Backbone.Router.extend({
   routes : {
     ':page' : 'showPage'
   },
-  showPage: function(page) {
+  showPage: function(page, params) {
     $('.pageview').hide();
     //news pages are rendered on the fly,
     //as feeds have to be fetched.
     /*if(page === 'news') {
       M.rss_view.render();
-    }*/
+     }*/
+    M.params = params;
     var id = nameIdMap[page];
     if(!id) {
       this.render404();
@@ -117,7 +137,8 @@ var AppRouter = Backbone.Router.extend({
     else {
       $('#navigation').show();
     }
-    M.appView.navView.trigger('navclicked'); 
+    //console.log('navclicked');
+    M.appView.navView.trigger('navclicked');
   },
   render404: function() {
     $('.pageview').hide();
@@ -127,7 +148,7 @@ var AppRouter = Backbone.Router.extend({
   }
 });
 
-// hashmap to maintain one-to-one lookup among page ids and 
+// hashmap to maintain one-to-one lookup among page ids and
 // their names
 var nameIdMap = {};
 
@@ -176,9 +197,11 @@ M.init = function() {
 
 
   if(!window.location.hash) {
-    var startpage = M.site_content.menu.menuOrder[0];
+    var startpage = '#/' + M.site_content.menu.menuOrder[0];
+    //console.log(startpage);
     app_router.navigate(startpage, {trigger: true});
   }
+  M.app_router = app_router;
 
   //M.simHeir();
 };
@@ -202,7 +225,7 @@ M.appendAttrs = function(model, el) {
   _.each(model.get('attr'), function(val, key) {
     $(el).attr(key, val);
   });
-}
+};
 
 // create the list of tags and associate the objects with related tags
 M.createTagList = function(content, model) {

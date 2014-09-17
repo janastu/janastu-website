@@ -5,7 +5,7 @@
     tagName: 'div',
     className: '',
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
       _.bind(this.render, this);
     },
     render: function(el) {
@@ -22,7 +22,7 @@
     tagName: 'table',
     className: 'table',
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
       _.bind(this.render, this);
     },
     render: function(el) {
@@ -56,7 +56,7 @@
     className: '',
 
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
       _.bind(this.render, this);
     },
     render: function(el) {
@@ -68,7 +68,7 @@
 
   var VideoView = Backbone.View.extend({
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
       _.bind(this.render, this);
       // assuming cross-domain urls will have http in the src,
       // so also assuming they are embedded flash urls,
@@ -92,7 +92,7 @@
   var RSSView = Backbone.View.extend({
     el: '#feeds',
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
       _.bind(this.render, this);
     },
     render: function() {
@@ -106,15 +106,73 @@
       return;
     },
     render: function(el) {
-      return;
+      this.model.exec();
     }
   });
 
+  var MapView = Backbone.View.extend({
+    initialize: function(){
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
+      //_.bindAll(this);
+      _.bind(this.render, this);
+    },
+    render: function(el){
+      var template = _.template($("#map-template").html());
+      $(el).append(template);
+      var southWest = new L.LatLng(47.20, 4.04); //Logic to calculate the bounds for "world view".
+      var northEast = new L.LatLng(55.10, 16.67);
+      var restrictBounds = new L.LatLngBounds(southWest, northEast);
+      M.map = new L.Map('map',{mapBounds: restrictBounds, zoom: 2, worldCopyJump: true, center:[14.604847155053898, 2.8125] });
+      L.tileLayer(this.model.get("tileLayer")).addTo(M.map);
+      if(this.model.has("shp")){
+        $.getJSON(this.model.get("shp"), function(data){
+          L.geoJson(data).addTo(M.map);
+        });
+      }
+    }
+  });
+
+  var FeedsView = Backbone.View.extend({
+    tagName: 'div',
+    className: 'list-view',
+    initialize: function() {
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
+      _.bind(this.render, this);
+      _.bind(this.load, this);
+      this.load();
+      },
+    load: function() {
+      this.list = new Backbone.Collection();
+      this.list.url = 'getDB';
+      this.list.fetch({data:{url: this.model.get("dataSrc"),
+                             dbvar: ''},
+                             success: this.render});
+    },
+      render: function() {
+       new FeedContainerView({
+        collection: this.list,
+        el: $(this.model.get("containerElement")),
+        template: _.template($(this.model.get("templateElement")).html())
+      });
+      }
+  });
+
+  var FeedContainerView = Backbone.View.extend({
+    initialize: function(options) {
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
+      _.bind(this.render, this);
+      this.template = options.template || '';
+      _.each(this.collection.models, this.render, this);
+    },
+    render: function(model) {
+      $(this.el).append(this.template(model.toJSON()));
+    }
+  });
   var PageView = Backbone.View.extend({
     tagName: 'div',
     className: 'pageview',
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll.apply(_, [this].concat(_.functions(this)));
       _.bind(this.render, this);
       this.render();
       $(this.el).hide();
@@ -158,6 +216,8 @@
     'rss': RSSView,
     'table': TableView,
     'plugin': PluginView,
+    'map': MapView,
+    'FeedView': FeedsView,
     'PageView': PageView
   };
 })(M);

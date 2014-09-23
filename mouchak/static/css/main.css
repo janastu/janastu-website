@@ -102,7 +102,7 @@ body {
   /*font-family: arial, helvetica, sans-serif;*/
   font-family: 'Roboto', sans-serif;
   /*background-color: #ad4b0e;*/
-  background: url("static/img/background.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  background: url("../img/background.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
   color: #FFFFFF;
   margin: 10px;
   padding: 0;
